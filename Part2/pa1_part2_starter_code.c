@@ -44,7 +44,23 @@ void enqueue(queue* q, int new_data){
 	q->size++;
 }
 //dequeue: remove from head
-int dequeue(queue* q);
+//int dequeue(queue* q);
+int dequeue(queue* q) {
+    if (q->head == NULL) {
+        printf("Queue is empty! Cannot dequeue.\n");
+        exit(EXIT_FAILURE); // or return a sentinel value
+    }
+
+    node* temp = q->head;
+    int removed_data = temp->data;
+    q->head = q->head->next;
+    if (q->head == NULL) { // queue became empty
+        q->tail = NULL;
+    }
+    free(temp);
+    q->size--;
+    return removed_data;
+}
 
 int size(queue q){
 	return q.size;
