@@ -36,6 +36,18 @@ The project was divided into four parts. Each member was responsible for one par
 Output of Program — Task #2, Part IV:
 ----------------------------------------
 
+u	Mean: 4.84861	Std Dev: 2.28417
+v	Mean: 5.07375	Std Dev: 1.18002
+t	Mean: 5.12623	Std Dev: 1.15281
+v/t	Mean: 1.03627	Std Dev: 0.34787
+expr	Mean: 4.27816	Std Dev: 10.25981
+
+u	Mean: 1002.03949	Std Dev: 577.28523
+v	Mean: 1024.53015	Std Dev: 256.03403
+t	Mean: 1024.99194	Std Dev: 254.90482
+v/t	Mean: 1.08096	Std Dev: 0.55256
+expr	Mean: 935.49108	Std Dev: 2690.22247
+
 u	Mean: 4050.77057	Std Dev: 2337.85507
 v	Mean: 4095.94442	Std Dev: 1330.95547
 t	Mean: 4094.83778	Std Dev: 1315.37676
