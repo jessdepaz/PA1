@@ -21,15 +21,3 @@ void compute_stats(double *seq, int n, const char *label) {
 
     printf("%s\tMean: %.5f\tStd Dev: %.5f\n", label, mean, std_dev);
 }
-
-int main() {
-    // Example small test
-    int n = 5;
-    double u[] = {1, 2, 3, 4, 5};
-    double v[] = {2, 4, 6, 8, 10};
-
-    compute_stats(u, n, "u");
-    compute_stats(v, n, "v");
-
-    return 0;
-}

@@ -4,6 +4,7 @@
 #include <math.h>
 #include <time.h>
 #include "sequence_generator.h"
+#include "statistics.h"
 
 #define frand() (rand() / (double)RAND_MAX)
 #define nrand() (sqrt(-2 * log(frand())) * cos(2 * M_PI * frand()))
@@ -51,6 +52,13 @@ void generate_scenario(double mu, double sigma, double m, double M, int n)
     {
         printf("%d\t%.5f\t%.5f\t%.5f\t%.5f\t%.5f\n", i, u[i], v[i], t[i], v_over_t[i], expr[i]);
     }
+
+    // Compute and print statistics
+    compute_stats(u, n, "u");
+    compute_stats(v, n, "v");
+    compute_stats(t, n, "t");
+    compute_stats(v_over_t, n, "v/t");
+    compute_stats(expr, n, "expr");
 
     free(u);
     free(v);
