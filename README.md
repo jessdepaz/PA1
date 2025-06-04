@@ -1,4 +1,3 @@
-===============================
 Group Programming Assignment
 README.txt
 ===============================
