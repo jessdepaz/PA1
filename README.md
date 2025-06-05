@@ -17,9 +17,9 @@ Group Members:
    Panther ID (PID): 6164718  
    Email: ddiaz286@fiu.edu  
 
-4. [First Name Last Name]  
-   Panther ID (PID): [Panther ID]  
-   Email: [Email Address]  
+4. Angie Salazar  
+   Panther ID (PID): 6380209  
+   Email: asala200@fiu.edu
 
 -------------------------
 Responsibilities:
@@ -28,7 +28,7 @@ Responsibilities:
 The project was divided into four parts. Each member was responsible for one part:
 
 - Part I: Leonardo Chirinos
-- Part II: [Name]  
+- Part II: Angie Salazar 
 - Part III: Devin Diaz  
 - Part IV: Jessica De-Paz  
 
