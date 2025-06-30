@@ -4,10 +4,10 @@
 #define FREE 0
 
 void simulate_sjf() {
-    int t = 0;
     int completed = 0;
-	pqueue ready = init_pqueue(MAX_PROCESSES);
+	int t = 0;
 	int cpu_status = FREE;
+	pqueue ready = init_pqueue(MAX_PROCESSES);
 
     while (completed < n) {
 		// Check for new arrivals and enqueue
