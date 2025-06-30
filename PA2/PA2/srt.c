@@ -2,6 +2,7 @@
 #include "pqueue.h"
 #define FREE 0
 #define BUSY 1
+
 void simulate_srt() {
     int t = 0;
     int completed = 0;
@@ -10,9 +11,8 @@ void simulate_srt() {
 
     pqueue ready = init_pqueue(MAX_PROCESSES);
 
-    /* repeat until Rᵢ == 0 for all n processes      repeat until all processes have terminated */
     while (completed < n) {
-        
+        // Add newly arrived processes
         for (int i = 0; i < n; i++) {
             if (processes[i].arrival_time == t) {
                 processes[i].active = 1;
@@ -20,41 +20,34 @@ void simulate_srt() {
             }
         }
 
-        /* while no process is active, increment t */
-        if (!ready.size) {
+        // If no process is ready, time moves forward
+        if (ready.size == 0 && cpu_status == FREE) {
             t++;
             continue;
         }
 
-        /* choose active processes pᵢ to run next according to SRT */
+        // Peek top process to decide on preemption
         if (ready.size > 0) {
             process top = pq_peek(ready);
 
-            if (cpu_status == FREE || processes[cur].remaining_time > top.remaining_time) {
+            // If no process is running or the top process has shorter time
+            if (cpu_status == FREE || (cur >= 0 && processes[cur].remaining_time > top.remaining_time)) {
                 if (cpu_status == BUSY && processes[cur].remaining_time > 0) {
-                    enqueue_srt(&ready, processes[cur]);
+                    enqueue_srt(&ready, processes[cur]);  // preempt and push current back
                 }
 
                 process next = dequeue_srt(&ready);
                 cur = next.id;
                 cpu_status = BUSY;
             }
-        } /* else {
-             cpu_status = FREE;
-             cur = -1;
-         } */
+        }
 
-        /* decrement Rᵢ                              /* pᵢ has accumulated 1 CPU time unit */
-        if (cpu_status == BUSY){
+        // Run the current process
+        if (cpu_status == BUSY && cur >= 0) {
             processes[cur].remaining_time--;
-
-            /* if Rᵢ == 0                                 process i has terminated */
+            
             if (processes[cur].remaining_time == 0) {
-                /*  set active flag of pᵢ = 0             process i is excluded from further consideration */
-
                 processes[cur].active = 0;
-
-                /*  TTᵢ = t - Aᵢ  */
                 processes[cur].turnaround_time = t + 1 - processes[cur].arrival_time;
                 completed++;
                 cpu_status = FREE;
