@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
+#include <string.h>
 
 #define MAX_PROCESSES 1000
 #define frand() (rand()/(double)RAND_MAX)
