@@ -28,8 +28,7 @@ static void compute_average_turnaround_time() {
     }
 
     double average_turnaround_time = (double)total_turnaround_time / n;
-    fprintf(stderr, "ATT: %.2f, ", average_turnaround_time);
-	printf("%.2f\t", average_turnaround_time);
+    fprintf(stdout, "%.2f\t", average_turnaround_time);
 }
 
 int main2(int argc, char *argv[]) {
@@ -97,7 +96,7 @@ int main(int argc, char* argv[]){
 		for(int d = k/n; d <= 25*k/n; d += (k/n)){
 			int v = d/4, q = d+v;
 			fprintf(stderr, "\nd = %d, v = %d, q = %d: ", d, v, q);
-			printf("\n%d\t%d\t%d\t%d\t%d", n, k, d, v, q);
+			printf("\n%d\t%d\t%d\t%d\t%d\t", n, k, d, v, q);
 			sprintf(argv2[2], "%d", n);
 			sprintf(argv2[4], "%d", k);
 			sprintf(argv2[6], "%d", d);
