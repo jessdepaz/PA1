@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/jessicadepaz/Desktop/COP4610/PA1",
-      "program": "/Users/jessicadepaz/Desktop/COP4610/PA1/build/Debug/outDebug"
+      "cwd": "/Users/jessicadepaz/Desktop/COP4610/PA1/PA3/PA3-Submission",
+      "program": "/Users/jessicadepaz/Desktop/COP4610/PA1/PA3/PA3-Submission/build/Debug/outDebug"
     }
   ]
 }
