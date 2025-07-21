@@ -35,29 +35,29 @@ static int find_next_fit(int request_size){
     return current_addr; // Address of the first hole whose size is appropriate
 }
 
-// static void print_all_blocks(int count){
-//     for(int i = 0; i < count;i++)
-//         //printf("block[%d]: %s, %d, [%d, %d]\t",
-//             i, blocks[i].released?"released":"occupied",
-//             blocks[i].size,
-//             blocks[i].address,
-//             //blocks[i].address + blocks[i].size + 3);
-//     putchar('\n');
-// }
+static void print_all_blocks(int count){
+    for(int i = 0; i < count;i++)
+        printf("block[%d]: %s, %d, [%d, %d]\t",
+            i, blocks[i].released?"released":"occupied",
+            blocks[i].size,
+            blocks[i].address,
+            blocks[i].address + blocks[i].size + 3);
+    putchar('\n');
+}
 
-// static void print_all_holes(){
-//     int hole = 0, i = 0;
-//     do{
-//         //printf("hole#%d: %d, [%d, %d], P=%d, N=%d\t",
-//             i++,
-//             -memory[hole],
-//             hole, hole - memory[hole] + 3,
-//             memory[hole + PREV],
-//             //memory[hole + NEXT]);
-//             hole = memory[hole + NEXT];
-//     }while(hole);
-//     putchar('\n');
-// }
+static void print_all_holes(){
+    int hole = 0, i = 0;
+    do{
+        printf("hole#%d: %d, [%d, %d], P=%d, N=%d\t",
+            i++,
+            -memory[hole],
+            hole, hole - memory[hole] + 3,
+            memory[hole + PREV],
+            memory[hole + NEXT]);
+            hole = memory[hole + NEXT];
+    }while(hole);
+    putchar('\n');
+}
 
 void simulate_next_fit(){
     //printf("Simulating next-fit!\n");
