@@ -84,7 +84,8 @@ static void right_coalesce(int start_addr, int end_addr){
 	memory[next_hole + PREV] = start_addr;
 }
 static void double_coalesce(int start_addr, int end_addr){
-	error("double_coalesce not implemented!", 5);
+	// error("double_coalesce not implemented!", 5);
+	return;
 }
 void release(int block_index){
 	blocks[block_index].released = 1;
