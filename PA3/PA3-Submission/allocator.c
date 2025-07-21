@@ -65,16 +65,16 @@ static void add_hole(int start_addr, int end_addr){
 static void left_coalesce(int start_addr, int end_addr){
 	int left_end_addr = start_addr - 1;
 	int left_start_addr = left_end_addr - 3 + memory[left_end_addr];	
-	printf("left_coalesce: combining @[%d, %d] and @[%d, %d].\n", 
-		left_start_addr, left_end_addr, start_addr, end_addr);
+	//printf("left_coalesce: combining @[%d, %d] and @[%d, %d].\n", 
+	//	left_start_addr, left_end_addr, start_addr, end_addr);
 	memory[left_start_addr] -= (end_addr - start_addr + 1);
 	memory[end_addr] = memory[left_start_addr];
 }
 static void right_coalesce(int start_addr, int end_addr){
 	int right_start_addr = end_addr + 1;
 	int right_end_addr = right_start_addr + 3 - memory[right_start_addr];	
-	printf("right_coalesce: combining @[%d, %d] and @[%d, %d].\n", 
-		start_addr, end_addr, right_start_addr, right_end_addr);
+	//printf("right_coalesce: combining @[%d, %d] and @[%d, %d].\n", 
+	//	start_addr, end_addr, right_start_addr, right_end_addr);
 	memory[right_end_addr] -= (end_addr - start_addr + 1);
 	memory[start_addr] = memory[right_end_addr];
 	int prev_hole, next_hole;
@@ -93,8 +93,8 @@ void release(int block_index){
 	int end_addr = start_addr + size + 3;
 	int left_neighbor = start_addr == 0? 0: memory[start_addr - 1];
 	int right_neighbor = (end_addr == n - 1)? 0: memory[end_addr + 1];
-	printf("releasing block#%d @[%d, %d].LEFT=%d, RIGHT=%d.\n",
-		block_index, start_addr, end_addr, left_neighbor, right_neighbor);
+	//printf("releasing block#%d @[%d, %d].LEFT=%d, RIGHT=%d.\n",
+	//	block_index, start_addr, end_addr, left_neighbor, right_neighbor);
 	if(left_neighbor >= 0 && right_neighbor >= 0)//neither neighbors are holes
 		add_hole(start_addr, end_addr);//new hole is created
 	else if(left_neighbor < 0 && right_neighbor >= 0)//left neighbor is a hole!
