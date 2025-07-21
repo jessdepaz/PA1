@@ -117,12 +117,19 @@ void occupy(int hole_addr, int block_size, int block_id){
 	blocks[block_id].address = block_addr;//store new block in the list
 	blocks[block_id].size = block_size;//store new block in the list
 }
-int main(int argc, char* argv[]){
-	int request_size;
-	handle_args(argc, argv);
-	generate_all_request_sizes();
-	simulate_first_fit();
-	//simulate_next_fit();
-	//simulate_worst_fit();
-	//simulate_best_fit();
+int main(int argc, char* argv[]) {
+    handle_args(argc, argv);
+    generate_all_request_sizes();
+
+    if (strcmp(algorithm, "first") == 0)
+        simulate_first_fit();
+    else if (strcmp(algorithm, "next") == 0)
+        simulate_next_fit();
+    else if (strcmp(algorithm, "best") == 0)
+        simulate_best_fit();
+    else if (strcmp(algorithm, "worst") == 0)
+        simulate_worst_fit();
+    else
+        error("Unknown algorithm name. Use: first, next, best, or worst", 3);
+    return 0;
 }
