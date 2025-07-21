@@ -84,8 +84,25 @@ static void right_coalesce(int start_addr, int end_addr){
 	memory[next_hole + PREV] = start_addr;
 }
 static void double_coalesce(int start_addr, int end_addr){
-	// error("double_coalesce not implemented!", 5);
-	return;
+    // Perform left coalesce
+    int left_end_addr = start_addr - 1;
+    int left_start_addr = left_end_addr - 3 + memory[left_end_addr];
+    memory[left_start_addr] -= (end_addr - start_addr + 1);
+    memory[end_addr] = memory[left_start_addr];
+
+    // Perform right coalesce
+    int right_start_addr = end_addr + 1;
+    int right_end_addr = right_start_addr + 3 - memory[right_start_addr];
+    memory[right_end_addr] -= (end_addr - start_addr + 1);
+    memory[left_start_addr] = memory[right_end_addr];
+
+    // Fix linked list pointers
+    int prev_hole = memory[right_start_addr + PREV];
+    int next_hole = memory[right_start_addr + NEXT];
+    memory[left_start_addr + PREV] = prev_hole;
+    memory[left_start_addr + NEXT] = next_hole;
+    memory[prev_hole + NEXT] = left_start_addr;
+    memory[next_hole + PREV] = left_start_addr;
 }
 void release(int block_index){
 	blocks[block_index].released = 1;
