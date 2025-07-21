@@ -14,20 +14,31 @@ static void generate_all_request_sizes(){
 		next_request[i] = request_size;
 	}	
 }
-static void handle_args(int argc, char* argv[]){
-	if(argc != 9)
-		error("memory allocation simulator: too few arguments!", 1);
-	//-n [mem_size] -d [request_size_mean] -v [request_size_stddev] -x [rounds]
-	while(*++argv){
-		if(!strcmp(*argv, "-n"))
-			n = atoi(*++argv);//memory size
-		else if(!strcmp(*argv, "-d"))
-			d = atoi(*++argv);//mean of request sizes
-		else if(!strcmp(*argv, "-v"))
-			v = atoi(*++argv);//stddev of request sizes
-		else if(!strcmp(*argv, "-x"))
-			x = atoi(*++argv);//# of rounds/failed requests
-	}
+char algorithm[16] = "first"; // default
+
+static void handle_args(int argc, char* argv[]) {
+    if (argc != 11) {
+        fprintf(stderr,
+            "Usage: ./pa3 -a <algorithm> -n <mem_size> -d <request_mean> -v <request_stddev> -x <rounds>\n");
+        error("memory allocation simulator: too few arguments!", 1);
+    }
+
+    while (*++argv) {
+        if (!strcmp(*argv, "-a")) {
+            strcpy(algorithm, *++argv);
+        } else if (!strcmp(*argv, "-n")) {
+            n = atoi(*++argv); // memory size
+        } else if (!strcmp(*argv, "-d")) {
+            d = atoi(*++argv); // mean of request sizes
+        } else if (!strcmp(*argv, "-v")) {
+            v = atoi(*++argv); // stddev of request sizes
+        } else if (!strcmp(*argv, "-x")) {
+            x = atoi(*++argv); // # of rounds/failed requests
+        } else {
+            fprintf(stderr, "Unknown argument: %s\n", *argv);
+            error("Invalid argument!", 2);
+        }
+    }
 }
 static void add_hole(int start_addr, int end_addr){
 	memory[start_addr] = -memory[start_addr];

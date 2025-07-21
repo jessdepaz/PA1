@@ -31,6 +31,20 @@ The project was divided into parts. Each member was responsible for:
 - Best fit: Angie Salazar 
 - Worst fit: Devin Diaz 
 - report.pdf: Jessica De-Paz  
+-------------------------
+Note to Grader:
+-------------------------
+We have added a new -a command-line flag to specify which memory allocation strategy the simulator should use.
+
+Usage Format:
+--------------
+./pa3 -a <algorithm> -n <mem_size> -d <request_mean> -v <request_stddev> -x <rounds>
+
+Supported values for <algorithm>:
+- first – First Fit
+- next – Next Fit
+- best – Best Fit
+- worst – Worst Fit
 
 ----------------------------------------
 End of README.txt
