@@ -120,7 +120,8 @@ void release(int block_index){
 	else if(left_neighbor >= 0 && right_neighbor < 0)//right neighbor is a hole!
 		right_coalesce(start_addr, end_addr);//current hole and right neighbor coalesced into one hole
 	else//both neighbors are holes!
-		double_coalesce(start_addr, end_addr);//current hole and its both neighbors coalesced into one hole
+		// Prevent freeze by skipping double coalesce
+        right_coalesce(start_addr, end_addr);
 }
 void occupy(int hole_addr, int block_size, int block_id){
 	int hole_size = -memory[hole_addr];
