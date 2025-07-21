@@ -30,7 +30,7 @@ The project was divided into parts. Each member was responsible for:
 - Next fit: Leonardo Chirinos
 - Best fit: Angie Salazar 
 - Worst fit: Devin Diaz 
-- report.pdf: Jessica De-Paz  
+- report.pdf & testing: Jessica De-Paz  
 -------------------------
 Note to Grader:
 -------------------------
