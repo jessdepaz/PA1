@@ -55,9 +55,9 @@ void simulate_first_fit(){
 	int i = 0;//index of next_request
 	for(int round = 0; round < x; round++){
 		while(1){
-			// printf("Trying to satisfy request(%d)...", next_request[i]);
+			printf("Trying to satisfy request(%d)...", next_request[i]);
 			int hole_addr = find_first_fit(next_request[i]);
-			// printf("\thole address: %d\n", hole_addr);
+			printf("\thole address: %d\n", hole_addr);
 			if(hole_addr < 0)//request failed!
 				break;
 			int block_size = next_request[i++];
@@ -65,20 +65,20 @@ void simulate_first_fit(){
 			total_occupied_size += block_size;
 		}
 		amu += (total_occupied_size/(double)n);
-		// printf("current AMU: %.2f%%.\n", 100*amu/(round+1));
+		printf("current AMU: %.2f%%.\n", 100*amu/(round+1));
 		int to_be_released_block;
 		do{//randomly choose an occupied block to release it
 			to_be_released_block = rand() % block_count;
 		}while(blocks[to_be_released_block].released);
-		// printf("block#%d will be released.\n", to_be_released_block);
-		// printf("Before	 release:\n");
-		// print_all_blocks(block_count);
-		// print_all_holes();
+		printf("block#%d will be released.\n", to_be_released_block);
+		printf("Before	 release:\n");
+		print_all_blocks(block_count);
+		print_all_holes();
 		release(to_be_released_block);
 		total_occupied_size -= blocks[to_be_released_block].size;
-		// printf("After release:\n");
-		// print_all_blocks(block_count);
-		// print_all_holes();
+		printf("After release:\n");
+		print_all_blocks(block_count);
+		print_all_holes();
 	}
 	printf("Average memory utilization for first fit is %.2f%%.\n", 
 		100 * amu/x);
