@@ -243,7 +243,7 @@ int main(int argc, char* argv[]) {
 	ref_string_generator(ref_str);
 	int optimal_page_fault = optimal(ref_str, ALLOCATED_FRAMES, e * m);
 	printf("Optimal page replacement causes %d page faults\n", optimal_page_fault);
-		int fifo_page_fault = fifo(ref_str, ALLOCATED_FRAMES, e * m);
+		int fifo_page_fault = fifo(ref_str, ALLOCATED_FRAMES);
 	printf("FIFO page replacement causes %d page faults\n", fifo_page_fault);
 			int second_chance_page_fault = second_chance(ref_str, ALLOCATED_FRAMES, e * m);
 	printf("Second chance page replacement causes %d page faults\n", second_chance_page_fault);
