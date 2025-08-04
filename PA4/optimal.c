@@ -247,7 +247,7 @@ int main(int argc, char* argv[]) {
 	printf("FIFO page replacement causes %d page faults\n", fifo_page_fault);
 			int second_chance_page_fault = second_chance(ref_str, ALLOCATED_FRAMES, e * m);
 	printf("Second chance page replacement causes %d page faults\n", second_chance_page_fault);
-				int lru_page_fault = lru(ref_str, ALLOCATED_FRAMES, e * m);
+				int lru_page_fault = lru(ref_str, ALLOCATED_FRAMES);
 	printf("LRU chance page replacement causes %d page faults\n", lru_page_fault);
 	//do the same for other algorithms!
 	return 0;
