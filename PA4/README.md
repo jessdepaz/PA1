@@ -1,30 +1,37 @@
-Group Programming Assignment README.txt
+Group Programming Assignment 4
+README.txt
+===============================
 
 Group Members:
+--------------
 
-Jessica De-Paz
-Panther ID (PID): 6157948
-Email: jdepa011@fiu.edu
+1. Jessica De-Paz  
+   Panther ID (PID): 6157948  
+   Email: jdepa011@fiu.edu  
 
-Leonardo Chirinos Panther ID (PID): 6291959
-Email: lchir016@fiu.edu
+2. Leonardo Chirinos 
+   Panther ID (PID): 6291959  
+   Email: lchir016@fiu.edu  
 
-Devin Diaz
-Panther ID (PID): 6164718
-Email: ddiaz286@fiu.edu
+3. Devin Diaz  
+   Panther ID (PID): 6164718  
+   Email: ddiaz286@fiu.edu  
 
-Angie Salazar
-Panther ID (PID): 6380209
-Email: asala200@fiu.edu
+4. Angie Salazar  
+   Panther ID (PID): 6380209  
+   Email: asala200@fiu.edu
 
+-------------------------
 Responsibilities:
+-------------------------
 
-The project was divided into four parts. Each member was responsible for one part:
+The project was divided into parts. Each member was responsible for:
 
-Part I: Leonardo Chirinos: FIFO
+- FIFO & Optimal: Leonardo Chirinos
+- LRU: Angie Salazar 
+- Second Chance: Devin Diaz 
+- report.pdf & testing: Jessica De-Paz  
 
-Part II: Angie Salazar: LRU
-
-Part III: Devin Diaz: Second Chance
-
-Part IV: Jessica De-Paz: report.pdf
+----------------------------------------
+End of README.txt
+========================================
