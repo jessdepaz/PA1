@@ -140,52 +140,58 @@ int fifo(int* ref_str, int size){
     return page_faults;
 }
 
-int second_chance(Frame* frames, int size, int *ref_str)
-{
-	int page_faults = 0;
-	int replacement_index = 0;
+typedef struct {
+    int page_no;
+    int second_chance;
+} Frame;
 
-	for (int i = 0; i < size; i++)
-	{
-		frames[i].page_no = -1;
-		frames[i].second_chance = 0; 
-	}
-	
-	for (int cur = 0; cur < STRING_LEN; cur++)
-	{
-		int page_no = ref_str[cur];
-		int found = locate(frames, size, page_no);
+int second_chance(int* ref_str, int size, int length) {
+    int page_faults = 0;
+    int replacement_index = 0;
+    Frame frames[size];
 
-		if (found != -1)
-		{
-			frames[found].second_chance = 1; 
-			continue;
-		}
+    for (int i = 0; i < size; i++) {
+        frames[i].page_no = -1;
+        frames[i].second_chance = 0;
+    }
 
-		page_faults++;
+    for (int cur = 0; cur < length; cur++) {
+        int page_no = ref_str[cur];
+        int found = -1;
+        for (int i = 0; i < size; i++) {
+            if (frames[i].page_no == page_no) {
+                found = i;
+                break;
+            }
+        }
 
-		while (1) {
+        if (found != -1) {
+            frames[found].second_chance = 1;
+            continue;
+        }
+
+        page_faults++;
+
+        while (1) {
             if (frames[replacement_index].page_no == -1) {
-                // Empty frame — use immediately
                 frames[replacement_index].page_no = page_no;
                 frames[replacement_index].second_chance = 1;
                 replacement_index = (replacement_index + 1) % size;
                 break;
             } else if (frames[replacement_index].second_chance == 0) {
-                // Replace this one
                 frames[replacement_index].page_no = page_no;
                 frames[replacement_index].second_chance = 1;
                 replacement_index = (replacement_index + 1) % size;
                 break;
             } else {
-                // Give second chance and move on
                 frames[replacement_index].second_chance = 0;
                 replacement_index = (replacement_index + 1) % size;
             }
         }
-	}
-	return page_faults;
+    }
+    return page_faults;
 }
+
 
 int lru(int* ref_str, int size) {
     int frames[size];
