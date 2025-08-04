@@ -30,7 +30,20 @@ The project was divided into parts. Each member was responsible for:
 - FIFO & Optimal: Leonardo Chirinos
 - LRU: Angie Salazar 
 - Second Chance: Devin Diaz 
-- report.pdf & testing: Jessica De-Paz  
+- PA4 Results.pdf & testing: Jessica De-Paz  
+
+-------------------------
+Note to Grader:
+-------------------------
+
+Our PA4 Results.pdf is a table of the resulting page faults for each algorithm.
+We ran the following commands: 
+- gcc optimal.c -o main
+- ./main -P 1048576 -e 10 -m 200 -t 2000
+- ./main -P 4194304 -e 10 -m 200 -t 1000
+- ./main -P 1048576 -e 15 -m 200 -t 2000
+- ./main -P 4194304 -e 8 -m 500 -t 2000
+- ./main -P 262144 -e 15 -m 70 -t 1000
 
 ----------------------------------------
 End of README.txt
