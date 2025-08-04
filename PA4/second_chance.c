@@ -25,6 +25,7 @@ int locate(Frame *frames, int size, int page_no)
 	return -1;
 }
 
+
 void ref_string_generator(int *ref_str)
 {
 	int locus_position = 0;
@@ -34,18 +35,19 @@ void ref_string_generator(int *ref_str)
 	{
 		int next_ref = lrand() % e + locus_position;
 
-		if (!ref_count || next_ref != ref_str[ref_count - 1]) // different from previous one
+		if (!ref_count || next_ref != ref_str[ref_count - 1])
 			ref_str[ref_count++] = next_ref;
 
 		if (ref_count % m == 0)
-		{ // let's displace the locus
-			if (rand() < t * RAND_MAX) // jump
+		{
+			if (rand() < t * RAND_MAX)
 				locus_position = lrand() % (P - e + 1);
 			else
 				locus_position = (locus_position + 1) % (P - e + 1);
 		}
 	}
 }
+
 
 int handle_clas(int argc, char *argv[])
 {
@@ -75,50 +77,46 @@ int handle_clas(int argc, char *argv[])
 	return 0;
 }
 
-int second_chance(Frame* frames, int size, int *ref_str)
-{
+
+int second_chance(int *ref_str, int size, int length) {
 	int page_faults = 0;
 	int replacement_index = 0;
+	Frame frames[size];
 
-	for (int i = 0; i < size; i++)
-	{
+	for (int i = 0; i < size; i++) {
 		frames[i].page_no = -1;
-		frames[i].second_chance = 0; 
+		frames[i].second_chance = 0;
 	}
-	
-	for (int cur = 0; cur < STRING_LEN; cur++)
-	{
+
+	for (int cur = 0; cur < length; cur++) {
 		int page_no = ref_str[cur];
 		int found = locate(frames, size, page_no);
 
-		if (found != -1)
-		{
-			frames[found].second_chance = 1; 
+		if (found != -1) {
+			frames[found].second_chance = 1;
 			continue;
 		}
 
 		page_faults++;
 
 		while (1) {
-            if (frames[replacement_index].page_no == -1) {
-                // Empty frame — use immediately
-                frames[replacement_index].page_no = page_no;
-                frames[replacement_index].second_chance = 1;
-                replacement_index = (replacement_index + 1) % size;
-                break;
-            } else if (frames[replacement_index].second_chance == 0) {
-                // Replace this one
-                frames[replacement_index].page_no = page_no;
-                frames[replacement_index].second_chance = 1;
-                replacement_index = (replacement_index + 1) % size;
-                break;
-            } else {
-                // Give second chance and move on
-                frames[replacement_index].second_chance = 0;
-                replacement_index = (replacement_index + 1) % size;
-            }
-        }
+			if (frames[replacement_index].page_no == -1) {
+				frames[replacement_index].page_no = page_no;
+				frames[replacement_index].second_chance = 1;
+				replacement_index = (replacement_index + 1) % size;
+				break;
+			} else if (frames[replacement_index].second_chance == 0) {
+				frames[replacement_index].page_no = page_no;
+				frames[replacement_index].second_chance = 1;
+				replacement_index = (replacement_index + 1) % size;
+				break;
+			} else {
+				frames[replacement_index].second_chance = 0;
+				replacement_index = (replacement_index + 1) % size;
+			}
+		}
 	}
+
 	return page_faults;
 }
 
@@ -137,8 +135,7 @@ int main(int argc, char *argv[])
 	int *ref_str = (int *)malloc(STRING_LEN * sizeof(int));
 	ref_string_generator(ref_str);
 
-	Frame frames[ALLOCATED_FRAMES];
-	int faults = second_chance(frames, ALLOCATED_FRAMES, ref_str);
+	int faults = second_chance(ref_str, ALLOCATED_FRAMES, e * m);
 
 	printf("Second chance page replacement causes %d page faults\n", faults);
 	
